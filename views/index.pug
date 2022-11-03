@@ -1,5 +1,18 @@
 html
     head
+        link(rel="stylesheet", href="/static/style.css")
+        script(type="text/javascript", src="/static/main.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer")
         title=title
     body
-        h1=message
+        div(id="wrapper")
+            div(id="content")
+                input(id="fourierCount", placeholder="Fourier Count", value="5", onchange="generateData()")
+                input(id="fourierAmplitudeFactor", placeholder="Amplitude Factor", value="1/(2*t-1)", onchange="generateData()")
+                input(id="fourierFrequencyFactor", placeholder="Frequency Factor", value="2*t-1", onchange="generateData()")
+                div(id="canvasWrapper")
+                    canvas(id="chart")
+            script.
+                window.addEventListener('load', function () {
+                    onLoad();
+                }, false);
